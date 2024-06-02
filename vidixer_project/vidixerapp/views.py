@@ -30,10 +30,10 @@ def login_view(request):
 
 
 
-# @login_required
-# def logout_view(request):
-#     if request.method == 'POST':
-#         return redirect('home')
+@login_required
+def logout_view(request):
+    if request.method == 'GET':
+        return home
 
 
 
