@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .forms import VideoForm
-from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
@@ -20,20 +21,29 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # Redirect to a specific page after successful login
-            return redirect('home')
-        else:
-            # Handle invalid login credentials
+            messages.success(request,"Successfully loged in")
+
+            return redirect('home/upload')
+        else:            
+            messages.success(request,"Invalid username or password")
+
             return render(request, 'login.html', {'error_message': 'Invalid username or password'})
     else:
-        return render(request, 'login.html')
+        return HttpResponse("404 - not found")
 
 
 
-# @login_required
-# def logout_view(request):
-#     if request.method == 'POST':
-#         return redirect('home')
+@login_required
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        messages.success(request,"Successfully loged out'")
+
+        return home(request)
+    else:
+        return HttpResponse("404 - not found")
+
+
 
 
 
