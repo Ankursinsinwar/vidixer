@@ -15,7 +15,7 @@ def home(request):
 
 
 def login_view(request):
-    if request.method == 'POST':
+    # if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
@@ -23,25 +23,25 @@ def login_view(request):
             login(request, user)
             messages.success(request,"Successfully loged in")
 
-            return redirect('home/upload')
+            return redirect('user_home')
         else:            
             messages.success(request,"Invalid username or password")
 
             return render(request, 'login.html', {'error_message': 'Invalid username or password'})
-    else:
-        return HttpResponse("404 - not found")
+    # else:
+    #     return HttpResponse("404 - not found")
 
 
 
 @login_required
 def logout_view(request):
-    if request.method == 'POST':
+    # if request.method == 'POST':
         logout(request)
         messages.success(request,"Successfully loged out'")
 
-        return home(request)
-    else:
-        return HttpResponse("404 - not found")
+        return redirect('home')
+    # else:
+    #     return HttpResponse("404 - not found")
 
 
 
@@ -62,7 +62,7 @@ def video_upload(request):
         form = VideoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')  # Redirect to home page after successful upload
+            return redirect('user_home')  # Redirect to home page after successful upload
     else:
         form = VideoForm()
        

@@ -19,9 +19,9 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
     path('', include('vidixerapp.urls')),
     path('vidixerapp/', include('vidixerapp.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('vidixerapp.urls')),
 
 ]
