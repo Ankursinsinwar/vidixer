@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import VideoForm
 from django.contrib import messages
+from django.contrib.auth.models import User
+
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Video
 
 
 
@@ -75,8 +78,20 @@ def video_upload(request):
         form = VideoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('user_home')  # Redirect to home page after successful upload
+            return redirect('vedio_decription')  # Redirect to home page after successful upload
     else:
         form = VideoForm()
        
     return render(request, 'video_upload.html', {'form': form,'user': user})
+
+
+def vedio_decription(request):
+    try:
+        videos = Video.objects.filter(uploaded_by=request.user)
+        return render(request, 'videos.html', {'videos': videos})
+    except Video.DoesNotExist:
+        return render(request, 'videos.html')
+    except Exception as e:
+        return HttpResponse(f"An error occurred: {str(e)}", status=500)
+                # return render(request, 'videos.html')
+
