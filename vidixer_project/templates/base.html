@@ -50,6 +50,15 @@
             <span class="text-muted">&copy; 2024 Cashify</span>
         </div>
     </footer>
+    
+<script>
+    const clip = document.querySelectorAll(".hover-to-play");
+    for (let i = 0; i < clip.length; i++) {
+      clip[i].addEventListener("mouseenter", function (e) {
+        clip[i].play();
+      }); clip[i].addEventListener("mouseout", function (e) { clip[i].pause(); });
+    }
+  </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

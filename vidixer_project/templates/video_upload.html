@@ -9,29 +9,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-
-        {% comment %} <input type="text" name="uploaded_by" value="{{ request.user.username }}" readonly> {% endcomment %}
-
-        {% comment %} <input type="hidden" name="uploaded_by" value="{{ user.id }}">
-        <input  name="uploaded_by" value="david">   {% endcomment %}
-
-<!-- 
-        <label for="id_uploaded_by">Uploaded by:</label>
-        <select name="uploaded_by" required id="id_uploaded_by">
-      <option value="" selected>{{ request.user.username }}</option> -->
-      
         <button type="submit">Upload</button> 
     </form>
 </body>
-<script>
-   const user_id = document.querySelector('option');
-   user_id.innerHTML="    ";
-
-   var selectElement = document.getElementById('id_uploaded_by');
-   var newOption = document.createElement('option');
-newOption.value = "{{ request.user.username }}";
-newOption.text ="{{ request.user.username }}" ;
-selectElement.appendChild(newOption);
-</script>
 </html>
-

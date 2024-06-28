@@ -72,26 +72,24 @@ def user_home(request):
 
 
 @login_required
-def video_upload(request):
-    user = request.user.username
+def upload_video(request):
     if request.method == 'POST':
         form = VideoForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('vedio_decription')  # Redirect to home page after successful upload
+            video = form.save(commit=False)
+            video.uploaded_by = request.user
+            video.save()
+            return redirect('vedio_decription')  # Redirect to a success page
     else:
-        form = VideoForm()
-       
-    return render(request, 'video_upload.html', {'form': form,'user': user})
+        form = VideoForm(initial={'uploaded_by': request.user})
+    return render(request, 'video_upload.html', {'form': form})
 
-
+@login_required
 def vedio_decription(request):
-    try:
-        videos = Video.objects.filter(uploaded_by=request.user)
-        return render(request, 'videos.html', {'videos': videos})
-    except Video.DoesNotExist:
-        return render(request, 'videos.html')
-    except Exception as e:
-        return HttpResponse(f"An error occurred: {str(e)}", status=500)
-                # return render(request, 'videos.html')
+    # Fetch all videos uploaded by the current user
+    videos = Video.objects.filter(uploaded_by=request.user)
+    context = {
+        'videos': videos
+    }
+    return render(request, 'vedio_decription.html', context)
 

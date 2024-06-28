@@ -1,0 +1,29 @@
+<!-- vedio_decription.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Descriptions</title>
+</head>
+<body>
+    <h1>Video Descriptions</h1>
+    
+    {% if videos %}
+        <ul>
+            {% for video in videos %}
+                <li>
+                    <h2>{{ video.title }}</h2>
+                    <p>{{ video.description }}</p>
+                    <p>Uploaded by: {{ video.uploaded_by.username }}</p>
+                    <p>Uploaded on: {{ video.upload_date }}</p>
+                    <p><a href="{{ video.video_file.url }}">View Video</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No videos uploaded.</p>
+    {% endif %}
+    
+</body>
+</html>
