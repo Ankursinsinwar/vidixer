@@ -159,7 +159,7 @@
               {% else %}
               <button class="home-login buttonFlat">
               <a href="{% url 'login' %}">Login</a></button>
-              <button class="buttonFilled">Register</button>
+              <button class="buttonFilled"><a href="{% url 'register' %}">Register</a></button>
               {% endif %}
 
               
@@ -292,7 +292,7 @@
                 </svg>
                 <div class="feature-card-container">
                   <h3 class="feature-card-text heading3">
-                    <span>Upload a video</span>
+                    <a href="{% url 'video_upload' %}">Upload a video</a>
                   </h3>
                   <span class="bodySmall">
                     <span>
@@ -309,7 +309,7 @@
                 </svg>
                 <div class="feature-card-container">
                   <h3 class="feature-card-text heading3">
-                    <span>Edit a video</span>
+                    <a href="{% url 'vedio_decription' %}">your video</a>
                   </h3>
                   <span class="bodySmall">
                     <span>
