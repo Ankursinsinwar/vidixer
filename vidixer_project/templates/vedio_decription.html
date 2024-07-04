@@ -18,6 +18,7 @@
                     <p>Uploaded by: {{ video.uploaded_by.username }}</p>
                     <p>Uploaded on: {{ video.upload_date }}</p>
                     <p><a href="{{ video.video_file.url }}">View Video</a></p>
+                    <video width="320" height="240" controls src="/media/{{video.video_file}}"></video>
                 </li>
             {% endfor %}
         </ul>
