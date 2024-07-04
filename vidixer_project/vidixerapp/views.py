@@ -51,10 +51,6 @@ def login_view(request):
 
 @login_required
 def logout_view(request):
-<<<<<<< HEAD
-    if request.method == 'GET':
-        return home
-=======
     # if request.method == 'POST':
         logout(request)
         messages.success(request,"Successfully loged out'")
@@ -64,7 +60,6 @@ def logout_view(request):
     #     return HttpResponse("404 - not found")
 
 
->>>>>>> d0e15a3bc5e1018cdf1b187c6bac350e6c113c64
 
 
 
