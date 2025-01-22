@@ -3,22 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
-    {% if error_message %}
-    <p style="color:red ">{{ error_message }}</p>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+
+
+    <div class="container">
+        {% comment %} {% if error_message %}
+         <p style="color:red ">{{ error_message }}</p>
+         <script> alert("invalid username or ppassword"); </script>
+        {% endif %} {% endcomment %}
+        <form method="POST" id="form">
+            {% csrf_token %}
+        <h1>Login</h1>
+        <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
+        <div class="error"></div>
+        </div>
+        
+        <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+        <div class="error"></div>
+        </div>
+        {% if error_message %}
+        <p style="color:red ">{{ error_message }}</p>
+        <script> alert("invalid username or ppassword"); </script>
+       {% endif %}
         <button type="submit">Login</button>
-    </form>
+        <div class = "input-group">
+            <a href="{% url "register" %}">Don't have an account</a>
+        </div>
+        </form>
+    </div>
+        {% comment %} <script src="{% static 'script.js' %}"></script> {% endcomment %}
+
 </body>
 </html>
-
-

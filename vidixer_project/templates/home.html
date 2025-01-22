@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="utf-8" />
   <meta property="twitter:card" content="summary_large_image" />
-
+  {% load static %}
   <style data-tag="reset-style-sheet">
     html {
       line-height: 1.15;
@@ -134,9 +134,9 @@
 </head>
 
 <body>
-  <link rel="stylesheet" href="../static/home.css">
+  <link rel="stylesheet" href="{% static 'home.css'%}">
   <div>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="{% static 'style.css'%}">
 
     <div class="home-container">
       <div class="home-header">
