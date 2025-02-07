@@ -6,17 +6,37 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
-    {% if error_message %}
-    <p style="color:red ">{{ error_message }}</p>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br>
+
+
+
+    <div class="container">
+        {% if error_message %}
+         <p style="color:red ">{{ error_message }}</p>
+        {% endif %}
+        <form method="POST">
+            <form method="POST" id="form">
+            {% csrf_token %}
+        <h1>Login</h1>
+        <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
+        <div class="error"></div>
+        </div>
+        
+        <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+        <div class="error"></div>
+        </div>
+       
         <button type="submit">Login</button>
-    </form>
+        <div class = "input-group">
+            <a href="{% url 'register' %}" >Don't have an account</a>
+        </div>
+        </form>
+        </div>
+        <script src="script.js"></script>
+       </body>
+
 </body>
 </html>

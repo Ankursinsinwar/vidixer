@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,4 +12,45 @@
         <button type="submit">Upload</button> 
     </form>
 </body>
-</html>
+</html> {% endcomment %}
+
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css'%}" >
+
+
+{% block content %}
+<div class="container mt-4">
+  
+    <form id="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Upload a video</h1>
+        <div class="input-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title">
+            <div class="error"></div>
+        </div>
+        <div class="input-group">
+            <label for="description">Description</label>
+            <input type="textarea" id="description" name="description" >
+            <div class="error"></div>
+        </div>
+        <div class="input-group">
+            <input type="hidden" id="uploaded_by" name="uploaded_by" value="{{ user }}">
+        </div>
+        
+        <div class="input-group">
+            <label for="video_file">video file</label>
+            <input type="file" id="video_file" name="video_file">
+            <div class="error"></div>
+        </div>
+           
+            <button type="submit">submit</button>
+    </form>
+
+{% endblock %}
+
+
+{% comment %} {% block title %}Video upload {% endblock %} {% endcomment %}
+
+
