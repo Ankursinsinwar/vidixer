@@ -1,1 +1,76 @@
-*/media
+# === Python ===
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.swp
+*.log
+*.pot
+*.mo
+*.sqlite3
+db.sqlite3
+env/
+venv/
+ENV/
+env.bak/
+*.env
+*.env.*
+
+# If you're using pipenv or poetry
+Pipfile.lock
+
+# === Django-specific ===
+staticfiles/
+media/
+*.sqlite3
+*.log
+local_settings.py
+.DS_Store
+
+# === VSCode ===
+.vscode/
+.idea/
+*.code-workspace
+
+# === React / Node ===
+node_modules/
+build/
+dist/
+.npm/
+.npmrc
+.yarn/
+.yarnrc
+.cache/
+.env.local
+.env.development
+.env.production
+.env.test
+
+# === OS-specific ===
+Thumbs.db
+ehthumbs.db
+.DS_Store
+Icon?
+Desktop.ini
+
+# === Test / Coverage ===
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+coverage.xml
+nosetests.xml
+test-results/
+
+# === Git ===
+*.orig
+
+# === Misc ===
+*.bak
+*.tmp
+*.log
+*.pid
+
+# === Docker ===
+.docker/
+docker-compose.override.yml
