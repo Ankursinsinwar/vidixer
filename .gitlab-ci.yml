@@ -1,0 +1,34 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DJANGO_SETTINGS_MODULE: vidixer.settings
+  DATABASE_URL: postgres://postgres:postgres@db:5432/vidixer
+
+build-backend:
+  stage: build
+  image: python:3.12
+  script:
+    - pip install -r backend/requirements.txt
+
+build-frontend:
+  stage: build
+  image: node:20
+  script:
+    - cd frontend
+    - npm install
+    - npm run build
+
+test-backend:
+  stage: test
+  image: python:3.12
+  script:
+    - pip install -r backend/requirements.txt
+    - python backend/manage.py test
+
+# deploy:
+#   stage: deploy
+#   script:
+#     - echo "Deploy step goes here"

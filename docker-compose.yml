@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres:17
+    container_name: vidixer-db
+    restart: always
+    environment:
+      POSTGRES_DB: vidixer
+      POSTGRES_USER: vidixeruser
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    container_name: vidixer-backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_DB=vidixer
+      - POSTGRES_USER=vidixeruser
+      - POSTGRES_PASSWORD=1234
+      - DB_HOST=db
+      - DB_PORT=5432
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    container_name: vidixer-frontend
+    command: serve -s dist -l 3000
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:
