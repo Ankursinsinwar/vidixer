@@ -13,7 +13,6 @@ build-backend:
   before_script:
     - python -V
     - pip install --upgrade pip
-    - 
   script:
     - echo "[ Build ] installing required libraries from requirements.txt ..."
     - pip install -r backend/requirements.txt
