@@ -11,21 +11,27 @@ build-backend:
   stage: build
   image: python:3.12
   script:
+    - echo "[ Build ] installing required libraries from requirements.txt ..."
     - pip install -r backend/requirements.txt
 
 build-frontend:
   stage: build
   image: node:20
   script:
+    - echo "[ [ Build ] Going in frontend"
     - cd frontend
+    - echo "[ [ Build ] installing npm packages ..."
     - npm install
+    - echo "[ [ Build ] running the build ..."
     - npm run build
 
 test-backend:
   stage: test
   image: python:3.12
   script:
+    - echo "[ test ] installing required libraries from requirements.txt ..."
     - pip install -r backend/requirements.txt
+    - echo "[ test ] Testing Backend server ..."
     - python backend/manage.py test
 
 # deploy:
