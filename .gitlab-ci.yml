@@ -9,14 +9,22 @@ variables:
 
 build-backend:
   stage: build
-  image: python:3.12
+  image: python:latest
+  before_script:
+    - python -V
+    - pip install --upgrade pip
+    - 
   script:
     - echo "[ Build ] installing required libraries from requirements.txt ..."
     - pip install -r backend/requirements.txt
+    - python3 backend/manage.py makemigrations
+    # - python3 manage.py makemigrations myapp
+    - python3 backend/manage.py migrate
+    - python3 backend/manage.py check
 
 build-frontend:
   stage: build
-  image: node:20
+  image: node:latest
   script:
     - echo "[ [ Build ] Going in frontend"
     - cd frontend
@@ -24,10 +32,18 @@ build-frontend:
     - npm install
     - echo "[ [ Build ] running the build ..."
     - npm run build
+  artifacts:
+    paths:
+      - frontend/dist
+    expire_in: 1 hour
+  only:
+    refs:
+      - main
+      - develop
 
 test-backend:
   stage: test
-  image: python:3.12
+  image: python:latest
   script:
     - echo "[ test ] installing required libraries from requirements.txt ..."
     - pip install -r backend/requirements.txt
