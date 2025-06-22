@@ -16,9 +16,9 @@ build-backend:
   script:
     - echo "[ Build ] installing required libraries from requirements.txt ..."
     - pip install -r backend/requirements.txt
-    - python3 manage.py makemigrations
+    - python3 backend/manage.py makemigrations
     # - python3 manage.py makemigrations myapp
-    - python3 manage.py migrate
+    - python3 backend/manage.py migrate
     - python3 backend/manage.py check
 
 build-frontend:
