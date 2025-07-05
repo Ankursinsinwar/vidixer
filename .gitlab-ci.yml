@@ -1,15 +1,14 @@
 stages:
-  - build-backend
-  - build-frontend
+  - build
   - test
-  #- deploy
+  - deploy
 
 variables:
   DJANGO_SETTINGS_MODULE: vidixer.settings
   DATABASE_URL: postgres://postgres:postgres@db:5432/vidixer
 
 build-backend:
-  stage: build-backend
+  stage: build
   image: python:latest
   before_script:
     - python -V
@@ -20,7 +19,7 @@ build-backend:
     - python3 backend/manage.py check
 
 build-frontend:
-  stage: build-frontend
+  stage: build
   image: node:latest
   script:
     - echo "[ [ Build ] Going in frontend"
