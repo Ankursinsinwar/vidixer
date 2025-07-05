@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
     'users',
     'projects',
@@ -86,12 +87,18 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'vidixer',
         'USER': 'vidixer',
-        'PASSWORD': '1234',
-        'HOST': 'db',   # 'localhost' if running without Docker
+        'PASSWORD': 1234,
+        'HOST': 'localhost',   # replace db with 'localhost' if running without Docker 
         'PORT': '5432',
     }
 }
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
 
 
 # Password validation
@@ -111,6 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'users.User'
+
 
 
 # Internationalization
